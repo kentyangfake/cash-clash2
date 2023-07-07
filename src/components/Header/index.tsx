@@ -1,35 +1,31 @@
 "use client";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useContext } from "react";
-import { Context, Page, options } from "../../context/context";
+import { options } from "../../context/context";
 
 export default function Header() {
-  const { page, setPage } = useContext(Context);
-
-  function handleOptionClick(option: Page) {
-    setPage(option);
-  }
+  const pathname = usePathname();
 
   return (
-    <div className="flex items-center w-full px-3 py-8 bg-zinc-400 sticky top-0 z-20">
-      <div className="font-bold tracking-wide mr-5">2016 政治獻金資訊平台</div>
+    <div className="flex items-center w-full px-8 py-3 bg-gray-300 sticky top-0 z-20">
+      <Link href={"/"} className="font-bold tracking-wide mr-24">
+        2016 政治獻金資訊平台
+      </Link>
       <div className="flex gap-8">
-        {options.map((option) => (
-          <Link
-            key={option.text}
-            href={option.path}
-            style={{ textDecoration: "none" }}
-          >
-            <div
-              className={`${
-                page?.text === option.text && "bg-gray-100"
-              } p-3 rounded-md text-base cursor-pointer text-gray-700 hover:bg-gray-200`}
-              onClick={() => handleOptionClick(option)}
-            >
-              {option.text}
-            </div>
-          </Link>
-        ))}
+        {options.map((option) => {
+          const isActive = pathname.startsWith(option.path);
+          return (
+            <Link key={option.text} href={option.path} className="no-underline">
+              <div
+                className={`${
+                  isActive && "bg-gray-50"
+                } p-3 rounded-md text-base cursor-pointer text-gray-700 hover:bg-gray-200`}
+              >
+                {option.text}
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
