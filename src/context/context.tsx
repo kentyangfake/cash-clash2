@@ -2,14 +2,10 @@
 /* eslint-disable no-empty-function */
 "use client";
 import { ReactNode, createContext, useRef, useState } from "react";
+import { Legislator } from "@/utils/types";
 
 interface ContextProviderProps {
   children: ReactNode;
-}
-
-export interface Legislator {
-  姓名: string;
-  [key: string]: string | number;
 }
 
 export const Context = createContext<{
