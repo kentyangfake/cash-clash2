@@ -1,32 +1,16 @@
-"use client";
+import getQueryClient from "@/utils/getQueryClient";
+import Hydrate from "@/utils/hydrate.client";
+import { dehydrate } from "@tanstack/query-core";
+import Compare from "./compare";
 import { fetchLegislators } from "@/utils/api";
-import { Context } from "@/context/context";
-import { Legislator } from "@/utils/types";
-import { useContext, useEffect } from "react";
-import { parseStrNumber } from "@/utils/parseNumber";
 
-export default function Home() {
-  const { legislators, initialLegislators, setLegislators } =
-    useContext(Context);
-
-  useEffect(() => {
-    async function getLegislators() {
-      const legislatorsRawData = await fetchLegislators("/api/legislators");
-      const finallegislatorsData = legislatorsRawData.map((obj) =>
-        parseStrNumber(obj)
-      );
-      setLegislators(finallegislatorsData);
-      initialLegislators.current = finallegislatorsData;
-    }
-
-    getLegislators();
-  }, []);
+export default async function Home() {
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery(["Legislators"], fetchLegislators);
+  const dehydratedState = dehydrate(queryClient);
   return (
-    <main className="flex flex-col items-center justify-center p-24">
-      <h1>資訊對比分析</h1>
-      {legislators.map((legislator) => (
-        <div>{legislator.姓名}</div>
-      ))}
-    </main>
+    <Hydrate state={dehydratedState}>
+      <Compare />
+    </Hydrate>
   );
 }
