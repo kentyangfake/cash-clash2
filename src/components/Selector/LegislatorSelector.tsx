@@ -132,7 +132,7 @@ export default function LegislatorSelector({
           <div
             className={`${
               parentIndex === clickedSelector ? "h-[330px]" : "h-0"
-            } transition-all duration-700 overflow-y-auto absolute z-10 rounded`}
+            } w-full transition-all duration-700 overflow-y-auto absolute z-10 rounded`}
           >
             <div className="w-full p-3 bg-[#efefef] sticky top-0 left-0">
               <input
@@ -162,7 +162,7 @@ export default function LegislatorSelector({
                 </button>
               ))
             ) : (
-              <button className="w-full py-2 border-b-[0.5px] border-zinc-800 cursor-pointer text-[#676b6b] disabled:cursor-not-allowed disabled:bg-[#efefef] disabled:text-[#aaadad]">
+              <button className="w-full py-2 border-b-[0.5px] border-zinc-800 text-[#676b6b] cursor-not-allowed">
                 查無此人
               </button>
             )}
