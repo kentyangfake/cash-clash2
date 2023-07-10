@@ -1,7 +1,7 @@
 import "./globals.css";
 import Header from "@/components/Header";
 import Providers from "@/utils/provider";
-import ContextProvider from "@/context/context";
+
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,10 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen">
-        <ContextProvider>
-          <Header />
-          <Providers>{children}</Providers>
-        </ContextProvider>
+        <Header />
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

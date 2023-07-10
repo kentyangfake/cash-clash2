@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { Legislator } from "@/context/context";
+import { Legislator,DonationData } from "@/utils/types";
 import {
   collection,
   getDocs,
@@ -8,11 +8,6 @@ import {
   query,
   where,
 } from "firebase/firestore";
-
-export interface DonationData {
-  候選人: string;
-  [key: string]: string | number;
-}
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
