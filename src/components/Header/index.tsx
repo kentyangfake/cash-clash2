@@ -1,16 +1,16 @@
-"use client";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface Page {
-  text: "資訊對比分析" | "資金來源分析" | "政治獻金明細";
-  path: "/" | "/source-analysis" | "/legislator" | `/legislator/${string}`;
+  text: '資訊對比分析' | '資金來源分析' | '政治獻金明細';
+  path: '/' | '/source-analysis' | '/donations' | `/donations/${string}`;
 }
 
 const options: Page[] = [
-  { text: "資訊對比分析", path: "/" },
-  { text: "資金來源分析", path: "/source-analysis" },
-  { text: "政治獻金明細", path: "/legislator" },
+  { text: '資訊對比分析', path: '/' },
+  { text: '資金來源分析', path: '/source-analysis' },
+  { text: '政治獻金明細', path: '/donations' },
 ];
 
 export default function Header() {
@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <div className="flex items-center w-full px-8 py-3 bg-gray-300 sticky top-0 z-20">
-      <Link href={"/"} className="font-bold tracking-wide mr-24">
+      <Link href={'/'} className="font-bold tracking-wide mr-24">
         2016 政治獻金資訊平台
       </Link>
       <div className="flex gap-8">
@@ -26,7 +26,7 @@ export default function Header() {
           <Link key={option.text} href={option.path} className="no-underline">
             <div
               className={`${
-                pathname === option.path && "bg-gray-50"
+                pathname === option.path && 'bg-gray-50'
               } p-3 rounded-md text-base cursor-pointer text-gray-700 hover:bg-gray-200`}
             >
               {option.text}

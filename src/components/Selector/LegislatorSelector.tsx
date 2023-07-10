@@ -1,5 +1,5 @@
-import { SetStateAction, useContext, useEffect, useState } from "react";
-import { Legislator } from "@/utils/types";
+import { Legislator } from '@/utils/types';
+import { SetStateAction, useEffect, useState } from 'react';
 
 interface LegislatorSelectorProps {
   initialLegislators: Legislator[];
@@ -56,7 +56,7 @@ export default function LegislatorSelector({
   const [legislators, setLegislators] =
     useState<Legislator[]>(initialLegislators);
   const [clickedSelector, setClickedSelector] = useState<number | null>(null);
-  const [input, setInput] = useState<string[]>(["", ""]);
+  const [input, setInput] = useState<string[]>(['', '']);
 
   function handleSelectorClick(index: number) {
     setLegislators(initialLegislators);
@@ -76,7 +76,7 @@ export default function LegislatorSelector({
       output[index] = legislator;
       setSelectedLegislators(output);
       setClickedSelector(null);
-      setInput(["", ""]);
+      setInput(['', '']);
     }
   }
 
@@ -99,14 +99,14 @@ export default function LegislatorSelector({
 
   useEffect(() => {
     function handleEsc(e: KeyboardEvent) {
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         setClickedSelector(null);
       }
     }
 
-    window.addEventListener("keydown", handleEsc);
+    window.addEventListener('keydown', handleEsc);
 
-    return () => window.removeEventListener("keydown", handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
   }, []);
 
   return (
@@ -119,8 +119,8 @@ export default function LegislatorSelector({
           <div
             className={`${
               parentIndex === clickedSelector
-                ? "bg-[#60aafe] text-white"
-                : "bg-[#efefef]"
+                ? 'bg-[#60aafe] text-white'
+                : 'bg-[#efefef]'
             } w-full h-12 rounded px-3 cursor-pointer relative flex items-center`}
             onClick={() => handleSelectorClick(parentIndex)}
           >
@@ -131,7 +131,7 @@ export default function LegislatorSelector({
           </div>
           <div
             className={`${
-              parentIndex === clickedSelector ? "h-[330px]" : "h-0"
+              parentIndex === clickedSelector ? 'h-[330px]' : 'h-0'
             } w-full transition-all duration-700 overflow-y-auto absolute z-10 rounded`}
           >
             <div className="w-full p-3 bg-[#efefef] sticky top-0 left-0">
@@ -147,7 +147,7 @@ export default function LegislatorSelector({
             {legislators.length > 0 ? (
               legislators.map((legislator, index) => (
                 <button
-                  className="w-full py-2 border-b-[0.5px] border-zinc-800 cursor-pointer text-[#676b6b] disabled:cursor-not-allowed disabled:bg-[#efefef] disabled:text-[#aaadad]"
+                  className="w-full py-2 border-b-[0.5px] border-zinc-800 cursor-pointer text-[#676b6b] disabled:cursor-not-allowed bg-[#efefef] disabled:text-[#aaadad]"
                   key={index}
                   disabled={
                     selectedLegislators.findIndex(
@@ -162,7 +162,7 @@ export default function LegislatorSelector({
                 </button>
               ))
             ) : (
-              <button className="w-full py-2 border-b-[0.5px] border-zinc-800 text-[#676b6b] cursor-not-allowed">
+              <button className="w-full py-2 border-b-[0.5px] border-zinc-800 bg-[#efefef] text-[#676b6b] cursor-not-allowed">
                 查無此人
               </button>
             )}
